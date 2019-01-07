@@ -1,4 +1,4 @@
-from django.http import HttpResponse, HttpResponseNotFound
+from django.http import HttpResponse, Http404
 from django.shortcuts import render
 import json
 
@@ -30,4 +30,4 @@ def get(request):
     if color in colors_list:
         return HttpResponse("{}".format(color))
     else:
-        return HttpResponseNotFound("no such color {}".format(color))
+        raise Http404("color {} does not exist in our database".format(color))
