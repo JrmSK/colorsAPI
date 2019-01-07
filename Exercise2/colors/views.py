@@ -18,6 +18,8 @@ def add(request):
     if color_to_add in colors_list:
         response_data = {'message': 'color {} already in the list'.format(color_to_add)}
         return HttpResponse(json.dumps(response_data), content_type="application/json", status=409)
+    elif color_to_add is None:
+        return HttpResponse("Please specify a color to add to the list.")
     else:
         colors_list.append(color_to_add)
         response_data = {'colors': colors_list,
